@@ -1,30 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import PreviousLogsScreen from './Screens/PreviousLogsScreen';
 
 export default App = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-
-  const getMovies = async () => {
-    try {
-      const response = await fetch('https://reactnative.dev/movies.json');
-      const json = await response.json();
-      setData(json.movies);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-
   return (
     <View style={styles.container}>
+      <PreviousLogsScreen/>
       <View>
         <Text style={styles.titleText}>Welcome, Scholars!</Text>
       </View>
@@ -46,15 +28,6 @@ export default App = () => {
           color="#f194ff"
           accessibilityLabel="Log In button"
         />
-      </View>
-      <View style={styles.container}>
-      <FlatList
-        data={data}
-        keyExtractor={({ id }, index) => id}
-        renderItem={({ item }) => (
-          <Text>{item.title}, {item.releaseYear}</Text>
-        )}
-      />
       </View>
     </View>
 
