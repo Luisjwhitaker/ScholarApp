@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   logText: {
     width: '100%',
-    fontFamily: "Roboto",
+    fontFamily: "chalkboard-se-bold",
     fontSize: 20,
   },
 });

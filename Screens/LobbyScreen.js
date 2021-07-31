@@ -55,8 +55,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   titleText: {
-    fontFamily: "monospace",
-    fontWeight: "bold",
+    fontFamily: "chalkboard-se-bold",
     textAlign: 'center',
     fontSize: 60,
     marginTop: 50,

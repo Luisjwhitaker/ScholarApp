@@ -56,23 +56,21 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 12,
     borderWidth: 1,
-    fontFamily: "monospace",
+    fontFamily: "chalkboard-se-bold",
   },
   buttonView: {
     marginBottom: 75,
     width: '80%',
   },
   titleText: {
-    fontFamily: "monospace",
+    fontFamily: "chalkboard-se-bold",
     fontSize: 60,
     marginTop: 50,
-    fontWeight: "bold",
     textAlign: 'center',
   },
   titleSubText: {
-    fontFamily: "monospace",
+    fontFamily: "chalkboard-se-bold",
     fontSize: 20,
-    fontWeight: "bold",
     textAlign: 'center',
   },
 

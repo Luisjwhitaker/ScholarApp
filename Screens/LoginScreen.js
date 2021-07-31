@@ -52,20 +52,19 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 12,
     borderWidth: 1,
-    fontFamily: "monospace",
+    fontFamily: "chalkboard-se-bold",
   },
   buttonView: {
     marginBottom: 75,
     width: '80%',
   },
   baseText: {
-    fontFamily: "Roboto",
+    fontFamily: "chalkboard-se-bold",
   },
   titleText: {
-    fontFamily: "monospace",
+    fontFamily: "chalkboard-se-bold",
     fontSize: 60,
     marginTop: 150,
-    fontWeight: "bold",
     textAlign: 'center',
   },
 
