@@ -17,7 +17,7 @@ export default props => {
     return <AppLoading />;
   } else {
     return (
-      <LoginScreen/>
+      <LogActivityScreen/>
     );
   }
 };

