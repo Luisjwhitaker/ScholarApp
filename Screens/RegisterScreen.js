@@ -1,54 +1,54 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
-export default LogActivityScreen = () => {
-
-  const [adventureSlp, setAdventureSlp] = useState('');
-  const [arenaSlp, setArenaSlp] = useState('');
-  const [questSlp, setQuestSlp] = useState('');
+export default function RegisterScreen() {
+  const [username, setUsername] = useState('username');
+  const [password, setPassword] = useState('password');
+  const [password2, setPassword2] = useState('password2');
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>Daily Log</Text>
-        <Text style={styles.titleSubText}>Date today</Text>
+        <Text style={styles.titleText}>Welcome, Scholars!</Text>
       </View>
       <View style={styles.inputView}>
         <TextInput
             style={styles.inputWide}
-            placeholder=" Adventure SLP"
-            onChangeText={(val) => setAdventureSlp(val)}
-            keyboardType="number-pad"
+            placeholder=" Username *Case-sensitive"
+            onChangeText={(val) => setUsername(val)}
+            keyboardType="default"
         />
         <TextInput
             style={styles.inputWide}
-            placeholder=" Arena SLP"
-            onChangeText={(val) => setArenaSlp(val)}
-            keyboardType="number-pad"
+            placeholder=" Password"
+            onChangeText={(val) => setPassword(val)}
+            keyboardType="default"
+            secureTextEntry={true}
         />
         <TextInput
             style={styles.inputWide}
-            placeholder=" Quest SLP"
-            onChangeText={(val) => setQuestSlp(val)}
-            keyboardType="number-pad"
+            placeholder=" Verify Password"
+            onChangeText={(val) => setPassword2(val)}
+            keyboardType="default"
+            secureTextEntry={true}
         />
       </View>
       <View style={styles.buttonView}>
         <Button
-          onPress={SubmittLog}
-          title="Submit"
+          onPress={SubmittRegister}
+          title="Register"
           color="#f194ff"
-          accessibilityLabel="Submit button"
+          accessibilityLabel="register submit button"
         />
       </View>
     </View>
 
   );
 
-  async function SubmittLog(){
+  async function SubmittRegister(){
     try {
 
-      await fetch('http://192.168.100.11:100/api/task-create/', {
+      await fetch('http://192.168.100.11:100/api/register/', {
         method:'post',
         mode:'no-cors',
         headers: {
@@ -56,10 +56,9 @@ export default LogActivityScreen = () => {
           'Content-Type':'application/json'
         },
         body: JSON.stringify({
-          user: 1,
-          adventure_slp : adventureSlp,
-          arena_slp : arenaSlp,
-          quest_slp : questSlp,
+          username: username,
+          password : password,
+          password2: password2,
         })
       });
 
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
+
   },
   inputView: {
     width: '85%',
@@ -94,15 +94,13 @@ const styles = StyleSheet.create({
     marginBottom: 75,
     width: '80%',
   },
+  baseText: {
+    fontFamily: "chalkboard-se-bold",
+  },
   titleText: {
     fontFamily: "chalkboard-se-bold",
     fontSize: 60,
-    marginTop: 50,
-    textAlign: 'center',
-  },
-  titleSubText: {
-    fontFamily: "chalkboard-se-bold",
-    fontSize: 20,
+    marginTop: 150,
     textAlign: 'center',
   },
 

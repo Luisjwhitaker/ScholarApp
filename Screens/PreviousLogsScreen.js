@@ -29,7 +29,7 @@ export default PreviousLogsScreen = () => {
           data={data}
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
-            <View key={id}>
+            <View>
               <Text style={styles.logText}>
                 ------------------------------------{"\n"}
                 User : {item.user},{"\n"}

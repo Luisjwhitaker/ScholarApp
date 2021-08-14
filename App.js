@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-import LoginScreen from './Screens/LoginScreen';
-import LobbyScreen from './Screens/LobbyScreen';
-import LogActivityScreen from './Screens/LogActivityScreen';
-import PreviousLogsScreen from './Screens/PreviousLogsScreen';
+import Navigator from './routes/homeStack';
 
 export default props => {
   let [fontsLoaded] = useFonts({
@@ -17,7 +14,7 @@ export default props => {
     return <AppLoading />;
   } else {
     return (
-      <LogActivityScreen/>
+      <Navigator/>
     );
   }
 };
