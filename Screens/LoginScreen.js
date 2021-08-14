@@ -39,8 +39,7 @@ export default function LoginScreen() {
 
   async function SubmittLogin(){
     try {
-
-      await fetch('https://webhook.site/3d0ffd20-2ba3-4b89-92cd-dc40d6eac827', {
+      await fetch('http://192.168.100.11:100/api/login/', {
         method:'post',
         mode:'no-cors',
         headers: {
@@ -51,7 +50,9 @@ export default function LoginScreen() {
           username: username,
           password : password,
         })
-      });
+      }).then(response => response.json() )
+        .then(data => console.log(data) )
+        .catch(error => console.log(error));
 
     } catch (e) {
       console.log(e);
