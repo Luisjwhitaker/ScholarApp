@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
+// navigation imports
+import 'react-native-gesture-handler';
+import { NavigationContainer, useNavigation} from "@react-navigation/native";
+
 export default function RegisterScreen() {
   const [username, setUsername] = useState('username');
   const [password, setPassword] = useState('password');
   const [password2, setPassword2] = useState('password2');
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -36,9 +41,16 @@ export default function RegisterScreen() {
       <View style={styles.buttonView}>
         <Button
           onPress={SubmittRegister}
-          title="Register"
+          title="Submitt"
           color="#f194ff"
           accessibilityLabel="register submit button"
+        />
+        <Text></Text>
+        <Button
+          onPress={() => navigation.navigate('LoginScreen')}
+          title="Back"
+          color="#f194ff"
+          accessibilityLabel="Back button"
         />
       </View>
     </View>
@@ -60,7 +72,9 @@ export default function RegisterScreen() {
           password : password,
           password2: password2,
         })
-      });
+      }).then(response => response.json() )
+        .then(data => console.log(data) )
+        .catch(error => console.log(error));;
 
     } catch (e) {
       console.log(e);

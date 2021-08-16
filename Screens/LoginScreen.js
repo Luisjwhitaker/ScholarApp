@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
+// navigation imports
+import 'react-native-gesture-handler';
+import { NavigationContainer, useNavigation} from "@react-navigation/native";
+
 export default function LoginScreen() {
   const [username, setUsername] = useState('username');
   const [password, setPassword] = useState('password');
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View>
@@ -32,11 +36,19 @@ export default function LoginScreen() {
           color="#f194ff"
           accessibilityLabel="Log In button"
         />
+        <Text></Text>
+        <Button
+          onPress={() => navigation.navigate('RegisterScreen')}
+          title="Register"
+          color="#f194ff"
+          accessibilityLabel="Register button"
+        />
       </View>
     </View>
 
   );
 
+// Function for LogIn button
   async function SubmittLogin(){
     try {
       await fetch('http://192.168.100.11:100/api/login/', {
@@ -61,6 +73,13 @@ export default function LoginScreen() {
 
 }
 
+// Function for Register button
+//function Screen({ navigation }){
+//  const RegisterPage = ({ navigation }) => ()
+//  navigation.navigate("RegisterScreen");
+//}
+
+// Stylesheets
 const styles = StyleSheet.create({
   container: {
     flex: 1,

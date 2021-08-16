@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import { FlatList, StyleSheet, Text, View,} from 'react-native';
+import { FlatList, StyleSheet, Text, View, Button} from 'react-native';
+
+// navigation imports
+import { NavigationContainer, useNavigation} from "@react-navigation/native";
 
 export default PreviousLogsScreen = () => {
+
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   const getLogs = async () => {
     try {
@@ -30,15 +35,23 @@ export default PreviousLogsScreen = () => {
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
             <View>
-              <Text style={styles.logText}>
+              <Text key={item.id.toString()} style={styles.logText}>
                 ------------------------------------{"\n"}
                 User : {item.user},{"\n"}
                 Adventure slp: {item.adventure_slp},{"\n"}
                 Arena slp: {item.arena_slp},{"\n"}
-                Quest slp: {item.quest_slp},
+                Quest slp: {item.quest_slp},{"\n"}
+                id : {item.id.toString()}
               </Text>
             </View>
           )}
+        />
+        <Text></Text>
+        <Button
+          onPress={() => navigation.navigate('LobbyScreen')}
+          title="Back"
+          color="#f194ff"
+          accessibilityLabel="Back button"
         />
       </View>
     </View>

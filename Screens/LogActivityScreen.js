@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 
+// navigation imports
+import { NavigationContainer, useNavigation} from "@react-navigation/native";
+
 export default LogActivityScreen = () => {
 
   const [adventureSlp, setAdventureSlp] = useState('');
   const [arenaSlp, setArenaSlp] = useState('');
   const [questSlp, setQuestSlp] = useState('');
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -39,6 +43,13 @@ export default LogActivityScreen = () => {
           title="Submit"
           color="#f194ff"
           accessibilityLabel="Submit button"
+        />
+        <Text></Text>
+        <Button
+          onPress={() => navigation.navigate('LobbyScreen')}
+          title="Back"
+          color="#f194ff"
+          accessibilityLabel="Back button"
         />
       </View>
     </View>

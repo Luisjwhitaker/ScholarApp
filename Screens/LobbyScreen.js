@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Button, Alert, Text,} from 'react-native';
 
+// navigation imports
+import { NavigationContainer, useNavigation} from "@react-navigation/native";
+
 export default LobbyScreen = () => {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View>
@@ -10,7 +16,7 @@ export default LobbyScreen = () => {
       <View style={styles.buttonCluster}>
         <View style={styles.buttonAlignment}>
           <Button
-            onPress={() => Alert.alert('Cannot Submitt Logs at this time')}
+            onPress={() => navigation.navigate('LogActivityScreen')}
             title="Daily Logs"
             color="#f194ff"
             accessibilityLabel="Daily logs button"
@@ -32,13 +38,21 @@ export default LobbyScreen = () => {
             accessibilityLabel="Announcements button"
           />
         </View>
+        <View style={styles.buttonAlignment}>
+          <Button
+            onPress={() => navigation.navigate('PreviousLogsScreen')}
+            title="Previous Logs"
+            color="#f194ff"
+            accessibilityLabel="Previous Logs button"
+          />
+        </View>
       </View>
       <View style={styles.buttonBottom}>
         <Button
-          onPress={() => Alert.alert('Cannot Log SLP at this time')}
-          title="Submit"
+          onPress={() => Alert.alert('Cannot Logout at this time, Please close app to do so')}
+          title="Log Out"
           color="#f194ff"
-          accessibilityLabel="Submit button"
+          accessibilityLabel="Log out Button"
         />
       </View>
     </View>
