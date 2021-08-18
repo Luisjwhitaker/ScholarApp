@@ -18,6 +18,10 @@ import RegisterScreen from './screens/RegisterScreen';
 import LobbyScreen from './screens/LobbyScreen';
 import LogActivityScreen from './screens/LogActivityScreen';
 import PreviousLogsScreen from './screens/PreviousLogsScreen';
+import AnnouncementsScreen from './screens/AnnouncementsScreen';
+import CreditsScreen from './screens/CreditsScreen';
+import GuidesScreen from './screens/GuidesScreen';
+
 
 // naviagation constans
 const Tab = createBottomTabNavigator();
@@ -35,6 +39,9 @@ function MyStack() {
           <Stack.Screen name="LobbyScreen" component={LobbyScreen} options={{header: () => null}}/>
           <Stack.Screen name="LogActivityScreen" component={LogActivityScreen} options={{header: () => null}}/>
           <Stack.Screen name="PreviousLogsScreen" component={PreviousLogsScreen} options={{header: () => null}}/>
+          <Stack.Screen name="AnnouncementsScreen" component={AnnouncementsScreen} options={{header: () => null}}/>
+          <Stack.Screen name="CreditsScreen" component={CreditsScreen} options={{header: () => null}}/>
+          <Stack.Screen name="GuidesScreen" component={GuidesScreen} options={{header: () => null}}/>
         </Stack.Navigator>
         </NavigationContainer>
       ) : (

@@ -24,7 +24,7 @@ export default LobbyScreen = () => {
         </View>
         <View style={styles.buttonAlignment}>
           <Button
-            onPress={() => Alert.alert('Cannot view Guides at this time')}
+            onPress={() => navigation.navigate('GuidesScreen')}
             title="Guides"
             color="#f194ff"
             accessibilityLabel="Guides button"
@@ -32,7 +32,7 @@ export default LobbyScreen = () => {
         </View>
         <View style={styles.buttonAlignment}>
           <Button
-            onPress={() => Alert.alert('Cannot view Announcements at this time')}
+            onPress={() => navigation.navigate('AnnouncementsScreen')}
             title="Announcements"
             color="#f194ff"
             accessibilityLabel="Announcements button"
@@ -44,6 +44,14 @@ export default LobbyScreen = () => {
             title="Previous Logs"
             color="#f194ff"
             accessibilityLabel="Previous Logs button"
+          />
+        </View>
+        <View style={styles.buttonAlignment}>
+          <Button
+            onPress={() => navigation.navigate('CreditsScreen')}
+            title="Credits"
+            color="#f194ff"
+            accessibilityLabel="Credits button"
           />
         </View>
       </View>

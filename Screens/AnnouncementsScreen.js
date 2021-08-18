@@ -5,14 +5,14 @@ import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
 
-export default function CreditsScreen() {
+export default function AnnouncementsScreen() {
 
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>Credits!</Text>
+        <Text style={styles.titleText}>New!</Text>
       </View>
       <View>
       <Button
