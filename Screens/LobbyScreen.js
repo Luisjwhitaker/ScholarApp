@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Button, Alert, Text,} from 'react-native';
+import { StyleSheet, View, Button, Alert, Text, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
@@ -15,53 +15,53 @@ export default LobbyScreen = () => {
       </View>
       <View style={styles.buttonCluster}>
         <View style={styles.buttonAlignment}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonTouchable}
             onPress={() => navigation.navigate('LogActivityScreen')}
-            title="Daily Logs"
-            color="#f194ff"
-            accessibilityLabel="Daily logs button"
-          />
+            underlayColor='#fff'>
+              <Text style={styles.baseText}>Daily Logs</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonTouchable}
             onPress={() => navigation.navigate('GuidesScreen')}
-            title="Guides"
-            color="#f194ff"
-            accessibilityLabel="Guides button"
-          />
+            underlayColor='#fff'>
+              <Text style={styles.baseText}>Guides</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonTouchable}
             onPress={() => navigation.navigate('AnnouncementsScreen')}
-            title="Announcements"
-            color="#f194ff"
-            accessibilityLabel="Announcements button"
-          />
+            underlayColor='#fff'>
+              <Text style={styles.baseText}>Announcements</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonTouchable}
             onPress={() => navigation.navigate('PreviousLogsScreen')}
-            title="Previous Logs"
-            color="#f194ff"
-            accessibilityLabel="Previous Logs button"
-          />
+            underlayColor='#fff'>
+              <Text style={styles.baseText}>Previous Logs</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonTouchable}
             onPress={() => navigation.navigate('CreditsScreen')}
-            title="Credits"
-            color="#f194ff"
-            accessibilityLabel="Credits button"
-          />
+            underlayColor='#fff'>
+              <Text style={styles.baseText}>Credits</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.buttonBottom}>
-        <Button
+        <TouchableOpacity
+          style={styles.buttonTouchableBottom}
           onPress={() => Alert.alert('Cannot Logout at this time, Please close app to do so')}
-          title="Log Out"
-          color="#f194ff"
-          accessibilityLabel="Log out Button"
-        />
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Log Out</Text>
+        </TouchableOpacity>
       </View>
     </View>
 
@@ -91,7 +91,33 @@ const styles = StyleSheet.create({
   },
   buttonCluster: {
     width: '80%',
+    marginBottom: 130,
+  },
+  buttonView: {
     marginBottom: 150,
+    width: '80%',
+    borderRadius: 20 ,
+  },
+  buttonTouchable: {
+    marginBottom: 10,
+    width: '100%',
+    borderRadius: 20 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
+  },
+  buttonTouchableBottom: {
+    marginBottom: 10,
+    width: '100%',
+    borderRadius: 20 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
+  },
+  baseText: {
+    fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
   },
 
 });

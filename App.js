@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet} from 'react-native';
 
 // font stuff and loading
@@ -22,11 +22,12 @@ import AnnouncementsScreen from './screens/AnnouncementsScreen';
 import CreditsScreen from './screens/CreditsScreen';
 import GuidesScreen from './screens/GuidesScreen';
 
+// component imports
+//import Axie from './components/Axie';
 
 // naviagation constans
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
 
 var isSignedIn = true;
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import 'react-native-gesture-handler';
@@ -30,26 +30,25 @@ export default function LoginScreen() {
         />
       </View>
       <View style={styles.buttonView}>
-        <Button
-          onPress={SubmittLogin}
-          title="LogIn"
-          color="#f194ff"
-          accessibilityLabel="Log In button"
-        />
-        <Text></Text>
-        <Button
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={SubmitLogin}
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Log In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
           onPress={() => navigation.navigate('RegisterScreen')}
-          title="Register"
-          color="#f194ff"
-          accessibilityLabel="Register button"
-        />
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Register</Text>
+        </TouchableOpacity>
       </View>
     </View>
 
   );
 
 // Function for LogIn button
-  async function SubmittLogin(){
+  async function SubmitLogin(){
     try {
       await fetch('http://192.168.100.11:100/api/login/', {
         method:'post',
@@ -87,7 +86,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-
   },
   inputView: {
     width: '85%',
@@ -100,13 +98,25 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     fontFamily: "chalkboard-se-bold",
+    borderRadius: 15 ,
   },
   buttonView: {
-    marginBottom: 75,
+    marginBottom: 150,
     width: '80%',
+    borderRadius: 20 ,
+  },
+  buttonTouchable: {
+    marginBottom: 10,
+    width: '100%',
+    borderRadius: 10 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
   },
   baseText: {
     fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
   },
   titleText: {
     fontFamily: "chalkboard-se-bold",

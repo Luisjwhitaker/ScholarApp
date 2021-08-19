@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { FlatList, StyleSheet, Text, View, Button} from 'react-native';
+import { FlatList, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
@@ -47,12 +47,12 @@ export default PreviousLogsScreen = () => {
           )}
         />
         <Text></Text>
-        <Button
-          onPress={() => navigation.navigate('LobbyScreen')}
-          title="Back"
-          color="#f194ff"
-          accessibilityLabel="Back button"
-        />
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={() => navigation.navigate('RegisterScreen')}
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Back</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -77,4 +77,23 @@ const styles = StyleSheet.create({
     fontFamily: "chalkboard-se-bold",
     fontSize: 20,
   },
+  buttonView: {
+    marginBottom: 150,
+    width: '80%',
+    borderRadius: 20 ,
+  },
+  buttonTouchable: {
+    marginBottom: 20,
+    width: '100%',
+    borderRadius: 10 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
+  },
+  baseText: {
+    fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
+  },
+
 });

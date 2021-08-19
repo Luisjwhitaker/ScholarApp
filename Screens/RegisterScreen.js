@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import 'react-native-gesture-handler';
@@ -39,19 +39,18 @@ export default function RegisterScreen() {
         />
       </View>
       <View style={styles.buttonView}>
-        <Button
+        <TouchableOpacity
+          style={styles.buttonTouchable}
           onPress={SubmittRegister}
-          title="Submitt"
-          color="#f194ff"
-          accessibilityLabel="register submit button"
-        />
-        <Text></Text>
-        <Button
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Submit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
           onPress={() => navigation.navigate('LoginScreen')}
-          title="Back"
-          color="#f194ff"
-          accessibilityLabel="Back button"
-        />
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Back</Text>
+        </TouchableOpacity>
       </View>
     </View>
 
@@ -103,13 +102,25 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     fontFamily: "chalkboard-se-bold",
+    borderRadius: 15 ,
   },
   buttonView: {
-    marginBottom: 75,
+    marginBottom: 150,
     width: '80%',
+    borderRadius: 20 ,
+  },
+  buttonTouchable: {
+    marginBottom: 10,
+    width: '100%',
+    borderRadius: 10 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
   },
   baseText: {
     fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
   },
   titleText: {
     fontFamily: "chalkboard-se-bold",

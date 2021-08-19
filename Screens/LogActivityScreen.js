@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
@@ -38,25 +38,24 @@ export default LogActivityScreen = () => {
         />
       </View>
       <View style={styles.buttonView}>
-        <Button
-          onPress={SubmittLog}
-          title="Submit"
-          color="#f194ff"
-          accessibilityLabel="Submit button"
-        />
-        <Text></Text>
-        <Button
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={SubmitLog}
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Submit Log</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
           onPress={() => navigation.navigate('LobbyScreen')}
-          title="Back"
-          color="#f194ff"
-          accessibilityLabel="Back button"
-        />
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>Back</Text>
+        </TouchableOpacity>
       </View>
     </View>
 
   );
 
-  async function SubmittLog(){
+  async function SubmitLog(){
     try {
 
       await fetch('http://192.168.100.11:100/api/task-create/', {
@@ -100,10 +99,25 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     fontFamily: "chalkboard-se-bold",
+    borderRadius: 15 ,
   },
   buttonView: {
-    marginBottom: 75,
+    marginBottom: 150,
     width: '80%',
+    borderRadius: 20 ,
+  },
+  buttonTouchable: {
+    marginBottom: 10,
+    width: '100%',
+    borderRadius: 10 ,
+    fontFamily: "chalkboard-se-bold",
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
+  },
+  baseText: {
+    fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
   },
   titleText: {
     fontFamily: "chalkboard-se-bold",

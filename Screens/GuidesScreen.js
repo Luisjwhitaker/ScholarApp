@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation imports
 import 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
 
 export default function GuidesScreen() {
-
   const navigation = useNavigation();
 
   return (
@@ -14,48 +13,18 @@ export default function GuidesScreen() {
       <View>
         <Text style={styles.titleText}>Guides:</Text>
       </View>
-      <View>
-      <Button
+      <View style={styles.buttonAllign}>
+      <TouchableOpacity
+        style={styles.buttonTouchable}
         onPress={() => navigation.navigate('LobbyScreen')}
-        title="Back"
-        color="#f194ff"
-        accessibilityLabel="Back Button"
-      />
+        underlayColor='#fff'>
+          <Text style={styles.baseText}>Back</Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
 
-// Function for LogIn button
-  async function SubmittLogin(){
-    try {
-      await fetch('http://192.168.100.11:100/api/login/', {
-        method:'post',
-        mode:'no-cors',
-        headers: {
-          'Accept':'application/json',
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          username: username,
-          password : password,
-        })
-      }).then(response => response.json() )
-        .then(data => console.log(data) )
-        .catch(error => console.log(error));
-
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
 }
-
-// Function for Register button
-//function Screen({ navigation }){
-//  const RegisterPage = ({ navigation }) => ()
-//  navigation.navigate("RegisterScreen");
-//}
-
 // Stylesheets
 const styles = StyleSheet.create({
   container: {
@@ -64,26 +33,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-
   },
-  inputView: {
-    width: '85%',
-    alignItems: 'center',
-    marginBottom: 50,
+  buttonAllign:{
+  width: '80%',
   },
-  inputWide: {
-    height: 40,
+  buttonTouchable: {
+    marginBottom: 30,
     width: '100%',
-    margin: 12,
-    borderWidth: 1,
+    borderRadius: 10 ,
     fontFamily: "chalkboard-se-bold",
-  },
-  buttonView: {
-    marginBottom: 75,
-    width: '80%',
+    backgroundColor: '#f2f2f2',
+    borderWidth: 2,
   },
   baseText: {
     fontFamily: "chalkboard-se-bold",
+    fontSize: 30,
+    textAlign: 'center',
+    width: '100%',
   },
   titleText: {
     fontFamily: "chalkboard-se-bold",
