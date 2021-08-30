@@ -1,14 +1,54 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
-// navigation imports
+// navigation and auth imports
 import 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('username');
   const [password, setPassword] = useState('password');
+  const [token, setToken] = useState(null);
   const navigation = useNavigation();
+
+  const storeData = async (value) => {
+    try {
+      if (value == undefined) {
+        alert('Invalid Login: Please Try Again')
+      } else {
+        await AsyncStorage.setItem('token', String(value))
+        console.log('Data successfully saved')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token')
+      if(value !== null) {
+        setToken(value)
+        console.log(token) //remove later
+      }
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear()
+      setToken(null)
+      console.log('Storage successfully cleared!')
+    } catch (e) {
+      console.log('Failed to clear the async storage.')
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -16,17 +56,17 @@ export default function LoginScreen() {
       </View>
       <View style={styles.inputView}>
         <TextInput
-            style={styles.inputWide}
-            placeholder=" Username *Case-sensitive"
-            onChangeText={(val) => setUsername(val)}
-            keyboardType="default"
+          style={styles.inputWide}
+          placeholder=" Username *Case-sensitive"
+          onChangeText={(val) => setUsername(val)}
+          keyboardType="default"
         />
         <TextInput
-            style={styles.inputWide}
-            placeholder=" Password"
-            onChangeText={(val) => setPassword(val)}
-            keyboardType="default"
-            secureTextEntry={true}
+          style={styles.inputWide}
+          placeholder=" Password"
+          onChangeText={(val) => setPassword(val)}
+          keyboardType="default"
+          secureTextEntry={true}
         />
       </View>
       <View style={styles.buttonView}>
@@ -41,6 +81,18 @@ export default function LoginScreen() {
           onPress={() => navigation.navigate('RegisterScreen')}
           underlayColor='#fff'>
             <Text style={styles.baseText}>Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={() => getData()}
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>logToken</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={() => clearStorage()}
+          underlayColor='#fff'>
+            <Text style={styles.baseText}>clearToken</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -61,22 +113,16 @@ export default function LoginScreen() {
           username: username,
           password : password,
         })
-      }).then(response => response.json() )
-        .then(data => console.log(data) )
-        .catch(error => console.log(error));
-
+      }).then(response => response.json())
+        .then(response => storeData(JSON.stringify(response['token'])))
+        .catch(error => console.log(error))
     } catch (e) {
-      console.log(e);
+      console.log(e)
+      console.log('could not connect to website')
     }
+
   }
-
 }
-
-// Function for Register button
-//function Screen({ navigation }){
-//  const RegisterPage = ({ navigation }) => ()
-//  navigation.navigate("RegisterScreen");
-//}
 
 // Stylesheets
 const styles = StyleSheet.create({

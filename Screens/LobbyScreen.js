@@ -1,17 +1,28 @@
 import React from 'react';
 import { StyleSheet, View, Button, Alert, Text, TouchableOpacity} from 'react-native';
 
-// navigation imports
+// navigation and auth imports
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 export default LobbyScreen = () => {
-
   const navigation = useNavigation();
+
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear()
+      console.log('Storage successfully cleared!')
+    } catch (e) {
+      console.log('Failed to clear the async storage.')
+    }
+  }
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>Welcome %namehere%</Text>
+        <Text style={styles.titleText}>Welcome</Text>
+        <Text style={styles.titleSubText}>%User%</Text>
       </View>
       <View style={styles.buttonCluster}>
         <View style={styles.buttonAlignment}>
@@ -25,9 +36,9 @@ export default LobbyScreen = () => {
         <View style={styles.buttonAlignment}>
           <TouchableOpacity
             style={styles.buttonTouchable}
-            onPress={() => navigation.navigate('GuidesScreen')}
+            onPress={() => navigation.navigate('PreviousLogsScreen')}
             underlayColor='#fff'>
-              <Text style={styles.baseText}>Guides</Text>
+              <Text style={styles.baseText}>Previous Logs</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
@@ -41,9 +52,9 @@ export default LobbyScreen = () => {
         <View style={styles.buttonAlignment}>
           <TouchableOpacity
             style={styles.buttonTouchable}
-            onPress={() => navigation.navigate('PreviousLogsScreen')}
+            onPress={() => navigation.navigate('GuidesScreen')}
             underlayColor='#fff'>
-              <Text style={styles.baseText}>Previous Logs</Text>
+              <Text style={styles.baseText}>Guides</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonAlignment}>
@@ -58,7 +69,7 @@ export default LobbyScreen = () => {
       <View style={styles.buttonBottom}>
         <TouchableOpacity
           style={styles.buttonTouchableBottom}
-          onPress={() => Alert.alert('Cannot Logout at this time, Please close app to do so')}
+          onPress={() => clearStorage()}
           underlayColor='#fff'>
             <Text style={styles.baseText}>Log Out</Text>
         </TouchableOpacity>
@@ -82,16 +93,21 @@ const styles = StyleSheet.create({
     fontSize: 60,
     marginTop: 50,
   },
+  titleSubText: {
+    fontFamily: "chalkboard-se-bold",
+    textAlign: 'center',
+    fontSize: 40,
+  },
   buttonBottom: {
     width: '80%',
     marginBottom: 75,
   },
   buttonAlignment: {
-    marginBottom: 6,
+    marginTop: 10,
   },
   buttonCluster: {
     width: '80%',
-    marginBottom: 130,
+    marginBottom: 20,
   },
   buttonView: {
     marginBottom: 150,

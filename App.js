@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet} from 'react-native';
 
 // font stuff and loading
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-// navigation imports
+// navigation & authentication imports
 import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 //screen imports
 import LoginScreen from './screens/LoginScreen';
@@ -22,16 +24,26 @@ import AnnouncementsScreen from './screens/AnnouncementsScreen';
 import CreditsScreen from './screens/CreditsScreen';
 import GuidesScreen from './screens/GuidesScreen';
 
-// component imports
-//import Axie from './components/Axie';
-
 // naviagation constans
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-var isSignedIn = true;
 
 function MyStack() {
+  const [isSignedIn, setIsSignedIn] = useState(null);
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token')
+      if(value !== null) {
+        console.log(value)
+        setIsSignedIn(value)
+        console.log(token)
+      }
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   return (
       isSignedIn ? (
@@ -41,8 +53,8 @@ function MyStack() {
           <Stack.Screen name="LogActivityScreen" component={LogActivityScreen} options={{header: () => null}}/>
           <Stack.Screen name="PreviousLogsScreen" component={PreviousLogsScreen} options={{header: () => null}}/>
           <Stack.Screen name="AnnouncementsScreen" component={AnnouncementsScreen} options={{header: () => null}}/>
-          <Stack.Screen name="CreditsScreen" component={CreditsScreen} options={{header: () => null}}/>
           <Stack.Screen name="GuidesScreen" component={GuidesScreen} options={{header: () => null}}/>
+          <Stack.Screen name="CreditsScreen" component={CreditsScreen} options={{header: () => null}}/>
         </Stack.Navigator>
         </NavigationContainer>
       ) : (
@@ -55,19 +67,6 @@ function MyStack() {
       )
   );
 
-/*
-  return (
-    <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="LoginScreen" component={LoginScreen} options={{header: () => null}}/>
-      <Tab.Screen name="RegisterScreen" component={RegisterScreen} options={{header: () => null}}/>
-      <Tab.Screen name="LobbyScreen" component={LobbyScreen} options={{header: () => null}}/>
-      <Tab.Screen name="LogActivityScreen" component={LogActivityScreen} options={{header: () => null}}/>
-      <Tab.Screen name="PreviousLogsScreen" component={PreviousLogsScreen} options={{header: () => null}}/>
-    </Tab.Navigator>
-    </NavigationContainer>
-  );
-*/
 }
 
 // app display and loading fonts
@@ -85,14 +84,12 @@ export default props => {
   }
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffe6d9',
     alignItems: 'center',
   },
-
   subContainer: {
     flex: 1,
     backgroundColor: '#ffe6d9',
