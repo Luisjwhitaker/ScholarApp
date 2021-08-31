@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} fro
 import 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNRestart from 'react-native-restart';
 
 
 
@@ -32,7 +33,6 @@ export default function LoginScreen() {
       const value = await AsyncStorage.getItem('token')
       if(value !== null) {
         setToken(value)
-        console.log(token) //remove later
       }
     } catch(e) {
       console.log(e)
@@ -60,6 +60,7 @@ export default function LoginScreen() {
           placeholder=" Username *Case-sensitive"
           onChangeText={(val) => setUsername(val)}
           keyboardType="default"
+          autoCapitalize='none'
         />
         <TextInput
           style={styles.inputWide}
@@ -67,6 +68,7 @@ export default function LoginScreen() {
           onChangeText={(val) => setPassword(val)}
           keyboardType="default"
           secureTextEntry={true}
+          autoCapitalize='none'
         />
       </View>
       <View style={styles.buttonView}>
@@ -115,6 +117,7 @@ export default function LoginScreen() {
         })
       }).then(response => response.json())
         .then(response => storeData(JSON.stringify(response['token'])))
+        .then(response => RNRestart.Restart())
         .catch(error => console.log(error))
     } catch (e) {
       console.log(e)

@@ -36,16 +36,15 @@ function MyStack() {
     try {
       const value = await AsyncStorage.getItem('token')
       if(value !== null) {
-        console.log(value)
         setIsSignedIn(value)
-        console.log(token)
       }
     } catch(e) {
       console.log(e)
     }
   }
-
+getData()
   return (
+
       isSignedIn ? (
         <NavigationContainer>
         <Stack.Navigator>

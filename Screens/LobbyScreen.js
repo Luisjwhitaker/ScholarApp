@@ -5,18 +5,20 @@ import { StyleSheet, View, Button, Alert, Text, TouchableOpacity} from 'react-na
 import { NavigationContainer, useNavigation} from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import RNRestart from 'react-native-restart';
 
 export default LobbyScreen = () => {
   const navigation = useNavigation();
 
-  const clearStorage = async () => {
-    try {
-      await AsyncStorage.clear()
-      console.log('Storage successfully cleared!')
-    } catch (e) {
-      console.log('Failed to clear the async storage.')
-    }
+const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear()
+    console.log('Storage successfully cleared!')
+  } catch (e) {
+    console.log('Failed to clear the async storage.')
+    console.log(e)
   }
+}
 
   return (
     <View style={styles.container}>
