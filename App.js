@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet, StatusBar} from 'react-native';
 
 // font stuff and loading
 import AppLoading from 'expo-app-loading';
@@ -47,6 +47,7 @@ getData()
 
       isSignedIn ? (
         <NavigationContainer>
+            <StatusBar backgroundColor="#ffe6d9"/>
         <Stack.Navigator>
           <Stack.Screen name="LobbyScreen" component={LobbyScreen} options={{header: () => null}}/>
           <Stack.Screen name="LogActivityScreen" component={LogActivityScreen} options={{header: () => null}}/>
@@ -58,6 +59,7 @@ getData()
         </NavigationContainer>
       ) : (
         <NavigationContainer>
+        <StatusBar backgroundColor="#ffe6d9"/>
         <Stack.Navigator>
           <Stack.Screen name="LoginScreen" component={LoginScreen} options={{header: () => null}}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{header: () => null}}/>

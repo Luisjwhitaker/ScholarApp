@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, StatusBar, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation and auth imports
 import 'react-native-gesture-handler';
@@ -84,18 +84,6 @@ export default function LoginScreen() {
           underlayColor='#fff'>
             <Text style={styles.baseText}>Register</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonTouchable}
-          onPress={() => getData()}
-          underlayColor='#fff'>
-            <Text style={styles.baseText}>logToken</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonTouchable}
-          onPress={() => clearStorage()}
-          underlayColor='#fff'>
-            <Text style={styles.baseText}>clearToken</Text>
-        </TouchableOpacity>
       </View>
     </View>
 
@@ -117,7 +105,7 @@ export default function LoginScreen() {
         })
       }).then(response => response.json())
         .then(response => storeData(JSON.stringify(response['token'])))
-        .then(response => RNRestart.Restart())
+        .then(() => RNRestart.Restart())
         .catch(error => console.log(error))
     } catch (e) {
       console.log(e)
@@ -139,6 +127,7 @@ const styles = StyleSheet.create({
   inputView: {
     width: '85%',
     alignItems: 'center',
+    marginTop: 50,
     marginBottom: 50,
   },
   inputWide: {
@@ -170,7 +159,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontFamily: "chalkboard-se-bold",
     fontSize: 60,
-    marginTop: 150,
+    marginTop: 50,
     textAlign: 'center',
   },
 

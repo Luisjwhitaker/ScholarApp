@@ -24,7 +24,6 @@ const clearStorage = async () => {
     <View style={styles.container}>
       <View>
         <Text style={styles.titleText}>Welcome</Text>
-        <Text style={styles.titleSubText}>%User%</Text>
       </View>
       <View style={styles.buttonCluster}>
         <View style={styles.buttonAlignment}>
@@ -71,7 +70,7 @@ const clearStorage = async () => {
       <View style={styles.buttonBottom}>
         <TouchableOpacity
           style={styles.buttonTouchableBottom}
-          onPress={() => clearStorage()}
+          onPress={() => clearStorage().then(() => RNRestart.Restart())}
           underlayColor='#fff'>
             <Text style={styles.baseText}>Log Out</Text>
         </TouchableOpacity>
