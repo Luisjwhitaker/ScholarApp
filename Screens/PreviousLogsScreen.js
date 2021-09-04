@@ -49,7 +49,7 @@ export default PreviousLogsScreen = () => {
         <Text></Text>
         <TouchableOpacity
           style={styles.buttonTouchable}
-          onPress={() => navigation.navigate('RegisterScreen')}
+          onPress={() => navigation.navigate('LobbyScreen')}
           underlayColor='#fff'>
             <Text style={styles.baseText}>Back</Text>
         </TouchableOpacity>

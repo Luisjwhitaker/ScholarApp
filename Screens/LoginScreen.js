@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, StatusBar, Text, View, Button, Alert, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, StatusBar, Text, View, Button, Image, Alert, TextInput, TouchableOpacity} from 'react-native';
 
 // navigation and auth imports
 import 'react-native-gesture-handler';
@@ -51,9 +51,12 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.titleText}>Welcome, Scholars!</Text>
-      </View>
+        <View style={styles.logoView}>
+          <Image
+              style={styles.logoSize}
+              source={require('../assets/dls-logo.png')}
+          />
+        </View>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputWide}
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffe6d9',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     width: '100%',
   },
   inputView: {
@@ -159,8 +162,16 @@ const styles = StyleSheet.create({
   titleText: {
     fontFamily: "chalkboard-se-bold",
     fontSize: 60,
-    marginTop: 50,
     textAlign: 'center',
+  },
+  logoView: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  logoSize: {
+    width: 250,
+    height: 250,
   },
 
 });
